@@ -1,0 +1,204 @@
+#include <stdio.h>
+#include <stdlib.h>
+void ppe();
+void dod();
+int poshuk();
+int mod();
+void del();
+void sort();
+struct kat{
+    char name[10];
+    char au[10];
+    char vid[10];
+    int year;
+    int st;
+};
+ struct kat k[4]={
+        {"MC","Ostapka","prog",2024,400},
+        {"MC++","Author","cpp.corp",2000,300},
+        {"MCcool","CoolGuy","CoolBooks",2006,330}
+    };
+int main(){
+    FILE *M;
+struct kat *k;
+int x;
+
+ppe();
+
+dod();
+
+poshuk();
+
+mod();
+
+del();
+
+sort();
+
+free(k);
+    return 0;
+}
+
+void ppe(){
+    int u=0;
+    FILE *M=fopen("kat.txt","w");
+    fprintf(M,"pereglyad elementiv:\n");
+    while(u!=3){
+    fprintf(M,"%s %s %s %d %d\n",k[u].name,k[u].au,k[u].vid,k[u].year,k[u].st);
+    u++;
+    }
+}
+
+void dod(){
+    int u=0;
+    FILE *M;
+printf("Add yot book\nenter name:");
+scanf("%s",&k[3].name);
+
+printf("\nenter author:");
+scanf("%s",&k[3].au);
+
+printf("\nenter vidannya:");
+scanf("%s",&k[3].vid);
+
+printf("\nenter year:");
+scanf("%d",&k[3].year);
+
+printf("\nenter k-ist storinok:");
+scanf("%d",&k[3].st);
+
+
+fprintf(M,"\nDodavanya elementu:\n");
+    while(u!=4){
+     fprintf(M,"%s %s %s %d %d\n",k[u].name,k[u].au,k[u].vid,k[u].year,k[u].st);
+      u++;
+    }
+}
+
+int poshuk(){
+   FILE *M;
+   int u=0,x;
+   
+printf("\nenter year of the book:");
+scanf("%d",&x);
+
+fprintf(M,"\nsearch results:\n");
+    while(u!=4){
+     if(x==k[u].year){ 
+      fprintf(M,"%s %s %s %d %d\n",k[u].name,k[u].au,k[u].vid,k[u].year,k[u].st);
+     }
+    u++;
+    }
+}
+
+int mod(){
+   FILE *M;
+   int x,u=0;
+printf("\nchoose a book for mod:\n");
+   while(u!=4){
+    printf("%d. %s, %s, %s, %d, %d\n",u+1,k[u].name,k[u].au,k[u].vid,k[u].year,k[u].st);
+     u++;
+   } 
+fprintf(M,"\nname mod result:\n");
+scanf("%d",&x);
+switch(x){
+    case 1: printf("add new name for book 1: ");
+            scanf("%s",&k[0].name);
+            fprintf(M,"%s %s %s %d %d\n",k[0].name,k[0].au,k[0].vid,k[0].year,k[0].st);
+            break;
+    case 2: printf("add new name for book 2: ");
+            scanf("%s",&k[1].name);
+            fprintf(M,"%s %s %s %d %d\n",k[1].name,k[1].au,k[1].vid,k[1].year,k[1].st);
+            break;
+    case 3: printf("add new name for book 3: ");
+            scanf("%s",&k[2].name);
+            fprintf(M,"%s %s %s %d %d\n",k[2].name,k[2].au,k[2].vid,k[2].year,k[2].st);
+            break;
+    case 4: printf("add new name for book 4: ");
+            scanf("%s",&k[3].name);
+            fprintf(M,"%s %s %s %d %d\n",k[3].name,k[3].au,k[3].vid,k[3].year,k[3].st);
+            break;        
+   default: fprintf(M,"there is not such book\n"); 
+            return 0;  
+            break;      
+}
+}
+
+void del(){
+    int x,u=0;
+    FILE *M;
+  
+printf("\nchoose a book to delete:\n");
+   while(u!=4){
+    printf("%d. %s, %s, %s, %d, %d\n",u+1,k[u].name,k[u].au,k[u].vid,k[u].year,k[u].st);
+     u++;
+   } 
+scanf("%d",&x);
+fprintf(M,"\nbook %d delete result:\n",x);
+switch(x){
+    case 1:
+    u=1;
+    while(u!=4){
+    fprintf(M,"%s %s %s %d %d\n",k[u].name,k[u].au,k[u].vid,k[u].year,k[u].st);
+    u++;
+    }
+            break;
+    case 2: 
+    fprintf(M,"%s %s %s %d %d\n",k[0].name,k[0].au,k[0].vid,k[0].year,k[0].st);
+    fprintf(M,"%s %s %s %d %d\n",k[2].name,k[2].au,k[2].vid,k[2].year,k[2].st);
+    fprintf(M,"%s %s %s %d %d\n",k[3].name,k[3].au,k[3].vid,k[3].year,k[3].st);     
+            break;
+    case 3: 
+    fprintf(M,"%s %s %s %d %d\n",k[0].name,k[0].au,k[0].vid,k[0].year,k[0].st);
+    fprintf(M,"%s %s %s %d %d\n",k[1].name,k[1].au,k[1].vid,k[1].year,k[1].st);
+    fprintf(M,"%s %s %s %d %d\n",k[3].name,k[3].au,k[3].vid,k[3].year,k[3].st);
+            break;
+    case 4: 
+    u=0;
+    while(u!=3){
+    fprintf(M,"%s %s %s %d %d\n",k[u].name,k[u].au,k[u].vid,k[u].year,k[u].st);
+    u++;
+    }
+    break;
+    default: fprintf(M,"there is not such book\n");   
+    break;      
+}
+
+int l;
+printf("\nttt");
+scanf("%d",l);
+
+
+}
+
+void sort(){
+    FILE *M;
+    int i,j,c1,c2,u=0;
+int k0,k1,k2,k3;
+fprintf(M,"\nsort result:\n");
+    for(i=0;i<3;i++) { 
+       for(j=0;j<3;j++) {  
+        c1=k[j].st;
+        c2=k[j+1].st;
+           if(c1 > c2) {           
+              
+              struct kat *t = &k[j];
+              k[j] = k[j+1] ;
+              k[j+1] = *t; 
+
+           }
+        }
+        
+        k0=k[0].st;
+        k1=k[1].st;
+        k2=k[2].st;
+        k3=k[3].st;
+        if((k0<=k1)&&(k1<=k2)&&(k2<=k3)) break;
+        
+    }
+    while(u!=4){
+    fprintf(M,"%s %s %s %d %d\n",k[u].name,k[u].au,k[u].vid,k[u].year,k[u].st);
+    u++;
+    }
+    fclose(M);
+}

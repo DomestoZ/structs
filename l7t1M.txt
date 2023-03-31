@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <stdlib.h>
+void filew();
+struct kat *filer();
+int print(struct kat*);
+struct kat
+{
+    int shif;
+    char sur[10];
+    char name[10];
+    int year;
+    int pages;
+};
+
+int main(){
+  
+    filew();
+
+    print(filer());
+    return 0;
+}
+
+void filew(){
+    int i=1,u=0;
+    FILE *M=fopen("kat.txt","w");
+    struct kat k[10]={
+        {1,"popop","MC",2024,400},
+        {2,"bor","MC++",2000,300},
+        {3,"bor","MC++",2000,300},
+        {4,"bor","MC++",2000,300},
+        {5,"bor","MC++",2000,300},
+        {6,"bor","MC++",2000,300},
+        {7,"bor","MC++",2000,300},
+        {8,"bor","MC++",2000,300},
+        {9,"yoy","MCcool",1996,800},
+        {10,"opa","MCnecool",2006,330}
+    };
+while(u!=10){
+fprintf(M,"%d %s %s %d %d\n",k[u].shif,k[u].sur,k[u].name,k[u].year,k[u].pages);
+u++;
+}
+    fclose(M);
+    
+}
+
+struct kat *filer(){
+    int u=0,i=1;
+    FILE *M;
+    M=fopen("kat.txt","r");
+    struct kat *k,*txt;
+    k=(struct kat*)malloc((167)*sizeof(struct kat));
+    while(u!=10){
+    fscanf(M,"%d %s %s %d %d\n",&k[u].shif,&k[u].sur,&k[u].name,&k[u].year,&k[u].pages);
+    u++;
+    }
+    txt=k;
+    fclose(M);
+    return txt;
+}
+
+int print(struct kat *k){
+    struct kat *d;
+    int u=0;
+    printf("books language C:\n");
+    while(u!=3){
+        switch(u){
+            case 0: printf("%d %s %s %d %d\n",k[0].shif,k[0].sur,k[0].name,k[0].year,k[0].pages);
+    u++;
+            break;
+            case 1: printf("%d %s %s %d %d\n",k[8].shif,k[8].sur,k[8].name,k[8].year,k[8].pages);
+    u++;
+            break;
+            case 2: printf("%d %s %s %d %d\n",k[9].shif,k[9].sur,k[9].name,k[9].year,k[9].pages);
+    u++;
+            break;
+            default: printf("there is not such book"); 
+            return 0;
+        }
+    }
+   free(k);
+}
